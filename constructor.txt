@@ -1,0 +1,87 @@
+################### spring construcotr 
+1 create simple maven project
+2 insert depednecies in porm.xml 
+ <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.2.22.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>5.2.22.RELEASE</version>
+</dependency>
+
+3. srcmain.java create new package
+4. create employee class
+
+package constructor;
+
+public class Employee {
+	private int id;  
+	private String name;
+	
+	
+	public Employee(String name) {
+		super();
+		this.name = name;
+	}
+
+	public Employee(int id) {
+		super();
+		this.id = id;
+	}
+
+	public Employee() {System.out.println("def cons");}  
+
+	public Employee(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + "]";
+	}
+	
+	
+	  
+}
+
+5. create App class
+
+package constructor;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+
+public class App {
+	
+	public static void main(String[] args) {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("NewFile.xml");
+		Employee emp  = (Employee)ctx.getBean("expx");
+		System.out.print(emp);
+		
+}
+
+}
+
+
+6. create NewFile.xml in srcmainjava
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+  
+<bean class="constructor.Employee" name="expx">  
+<constructor-arg value="10" type="int"></constructor-arg>  
+</bean>  
+  
+</beans> 

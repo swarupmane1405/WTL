@@ -1,0 +1,76 @@
+################### spring construcotr 
+1 create simple maven project
+2 insert depednecies in porm.xml 
+  <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.2.22.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>5.2.22.RELEASE</version>
+</dependency>
+
+3. srcmain.java create new package
+4. create employee class
+
+package firstspring;
+
+public class Employee {
+	private int id;
+	private String Name;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", Name=" + Name + "]";
+	}
+	
+
+}
+
+5. create App class
+
+package firstspring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("NewFile.xml");
+		Employee emp  = (Employee)ctx.getBean("emp1");
+		System.out.print(emp);
+		
+}
+}
+
+6. create NewFile.xml in srcmainjava
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="firstspring.Employee" name="emp1">
+		<property name="id">
+			<value >1</value>
+		</property>
+		
+		<property name="Name">
+			<value >Swarup</value>
+		</property>
+	</bean>
+</beans>
